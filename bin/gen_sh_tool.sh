@@ -26,14 +26,14 @@ GEN_SH_TOOL_CFG=${GEN_SH_TOOL_HOME}/conf/${GEN_SH_TOOL}.cfg
 GEN_SH_TOOL_UTIL_CFG=${GEN_SH_TOOL_HOME}/conf/${GEN_SH_TOOL}_util.cfg
 GEN_SH_TOOL_LOG=${GEN_SH_TOOL_HOME}/log
 
-declare -A GENSH_USAGE=(
+declare -A GEN_SH_TOOL_USAGE=(
 	[USAGE_TOOL]="${GEN_SH_TOOL}"
 	[USAGE_ARG1]="[TNAME] Name of Bash module (file name)"
 	[USAGE_EX_PRE]="# Create FileCheck module"
 	[USAGE_EX]="${GEN_SH_TOOL} FileCheck"
 )
 
-declare -A GENSH_LOGGING=(
+declare -A GEN_SH_TOOL_LOGGING=(
 	[LOG_TOOL]="${GEN_SH_TOOL}"
 	[LOG_FLAG]="info"
 	[LOG_PATH]="${GEN_SH_TOOL_LOG}"
@@ -47,6 +47,8 @@ declare -A PB_STRUCTURE=(
 )
 
 TOOL_DEBUG="false"
+TOOL_LOG="false"
+TOOL_NOTIFY="false"
 
 #
 # @brief  Main function 
@@ -85,6 +87,9 @@ function __gen_sh_tool() {
 			__info_debug_message_end "$MSG" "$FUNC" "$GEN_SH_TOOL"
 			exit 129
 		fi
+		TOOL_DEBUG=${config_gen_sh_tool[DEBUGGING]}
+		TOOL_LOG=${config_gen_sh_tool[LOGGING]}
+		TOOL_NOTIFY=${config_gen_sh_tool[EMAILING]}
 		local UMTOOL=$(echo ${TNAME} | tr 'a-z' 'A-Z') SHTLINE PWD=`pwd` PDIR
 		local DATE=$(date) VERSION=${config_gen_sh_tool_util[VERSION]}
 		local COMPANY=${config_gen_sh_tool_util[COMPANY]} HASH="#" BCLINE
@@ -95,7 +100,7 @@ function __gen_sh_tool() {
 		local USRID=${config_gen_sh_tool_util[UID]}
 		local GRPID=${config_gen_sh_tool_util[GID]}
 		local EMAIL=${config_gen_sh_tool_util[EMAIL]}
-		MSG="Generating module folder structure!"
+		MSG="Generating tool folder structure!"
 		__info_debug_message "$MSG" "$FUNC" "$GEN_SH_TOOL"
 		PDIR="${PWD}/${TNAME}"
 		mkdir "${PDIR}/"
@@ -104,6 +109,9 @@ function __gen_sh_tool() {
 		mkdir "${PDIR}/log/"
 		MSG="Generating Bash script tool!"
 		__info_debug_message "$MSG" "$FUNC" "$GEN_SH_TOOL"
+		GEN_SH_TOOL_LOGGING[LOG_FLAG]="info"
+		GEN_SH_TOOL_LOGGING[LOG_MSGE]="$MSG"
+		__logging GEN_SH_TOOL_LOGGING
 		while read SHTLINE
 		do
 			eval echo "$SHTLINE" >> "${PDIR}/bin/${TNAME}.sh"
@@ -127,10 +135,14 @@ function __gen_sh_tool() {
 		MSG="Set permission!"
 		__info_debug_message "$MSG" "$FUNC" "$GEN_SH_TOOL"
 		eval "chmod -R 700 ${PDIR}/"
+		MSG="Generated bash script tool ${TNAME}"
+		GEN_SH_TOOL_LOGGING[LOG_FLAG]="info"
+		GEN_SH_TOOL_LOGGING[LOG_MSGE]="$MSG"
+		__logging GEN_SH_TOOL_LOGGING
 		__info_debug_message_end "Done" "$FUNC" "$GEN_SH_TOOL"
 		exit 0
 	fi
-	__usage GENSH_USAGE
+	__usage GEN_SH_TOOL_USAGE
 	exit 128
 }
 

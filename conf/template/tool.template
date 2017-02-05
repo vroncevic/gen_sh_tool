@@ -49,6 +49,8 @@ ${HASH}
 ")"
 
 "TOOL_DEBUG=\\\"false\\\""
+"TOOL_LOG=\\\"false\\\""
+"TOOL_NOTIFY=\\\"false\\\""
 
 ${HASH}
 ${HASH}" @brief  TODO"
@@ -90,6 +92,9 @@ ${TAB}${TAB}${TAB}"MSG=\\\"Force exit!\\\""
 ${TAB}${TAB}${TAB}"__info_debug_message_end \\\"\\\$MSG\\\" \\\"\\\$FUNC\\\" \\\"\\\${${UMTOOL}_TOOL}\\\""
 ${TAB}${TAB}${TAB}"return \\\$NOT_SUCCESS"
 ${TAB}${TAB}"fi"
+${TAB}${TAB}"TOOL_DEBUG=\\\${config_${TNAME}[DEBUGGING]}"
+${TAB}${TAB}"TOOL_LOG=\\\${config_${TNAME}[LOGGING]}"
+${TAB}${TAB}"TOOL_NOTIFY=\\\${config_${TNAME}[EMAILING]}"
 ${TAB}${TAB}${HASH}
 ${TAB}${TAB}${HASH}" Code goes here"
 ${TAB}${TAB}${HASH}
