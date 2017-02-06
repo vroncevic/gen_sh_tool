@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# @brief   Generating Bash tool script
+# @brief   Generating Bash Tool Script
 # @version ver.1.0
 # @date    Wed May 11 13:00:19 CEST 2016
 # @company Frobas IT Department, www.frobas.com 2016
@@ -14,6 +14,7 @@ UTIL_LOG=${UTIL}/log
 .	${UTIL}/bin/devel.sh
 .	${UTIL}/bin/usage.sh
 .	${UTIL}/bin/check_root.sh
+.	${UTIL}/bin/check_tool.sh
 .	${UTIL}/bin/logging.sh
 .	${UTIL}/bin/load_conf.sh
 .	${UTIL}/bin/load_util_conf.sh
@@ -28,8 +29,8 @@ GEN_SH_TOOL_LOG=${GEN_SH_TOOL_HOME}/log
 
 declare -A GEN_SH_TOOL_USAGE=(
 	[USAGE_TOOL]="${GEN_SH_TOOL}"
-	[USAGE_ARG1]="[TNAME] Name of Bash module (file name)"
-	[USAGE_EX_PRE]="# Create FileCheck module"
+	[USAGE_ARG1]="[TOOL NAME] Name of bash tool script (file/project name)"
+	[USAGE_EX_PRE]="# Generating bash tool script FileCheck"
 	[USAGE_EX]="${GEN_SH_TOOL} FileCheck"
 )
 
@@ -90,45 +91,50 @@ function __gen_sh_tool() {
 		TOOL_DEBUG=${config_gen_sh_tool[DEBUGGING]}
 		TOOL_LOG=${config_gen_sh_tool[LOGGING]}
 		TOOL_NOTIFY=${config_gen_sh_tool[EMAILING]}
-		local UMTOOL=$(echo ${TNAME} | tr 'a-z' 'A-Z') SHTLINE PWD=`pwd` PDIR
-		local DATE=$(date) VERSION=${config_gen_sh_tool_util[VERSION]}
-		local COMPANY=${config_gen_sh_tool_util[COMPANY]} HASH="#" BCLINE
-		local AUTHOR=${config_gen_sh_tool_util[AUTHOR]} UCLINE TAB="	"
-		local SCRIPT_TOOL=${config_gen_sh_tool_util[SCRIPT_TOOL]}
-		local BASIC_CONFIG=${config_gen_sh_tool_util[BASIC_CONFIG]}
-		local UTIL_CONFIG=${config_gen_sh_tool_util[UTIL_CONFIG]}
+		local UMTOOL=$(echo ${TNAME} | tr 'a-z' 'A-Z') SHL PWD=`pwd` PDIR BCL
+		local DATE=$(date) VERSION=${config_gen_sh_tool_util[VERSION]} UCL
+		local COMPANY=${config_gen_sh_tool_util[COMPANY]} HASH="#" TAB="	"
+		local AUTHOR=${config_gen_sh_tool_util[AUTHOR]}
+		local EMAIL=${config_gen_sh_tool_util[EMAIL]}
 		local USRID=${config_gen_sh_tool_util[UID]}
 		local GRPID=${config_gen_sh_tool_util[GID]}
-		local EMAIL=${config_gen_sh_tool_util[EMAIL]}
-		MSG="Generating tool folder structure!"
+		MSG="Generating tool directory structure!"
 		__info_debug_message "$MSG" "$FUNC" "$GEN_SH_TOOL"
 		PDIR="${PWD}/${TNAME}"
 		mkdir "${PDIR}/"
 		mkdir "${PDIR}/bin/"
 		mkdir "${PDIR}/conf/"
 		mkdir "${PDIR}/log/"
-		MSG="Generating Bash script tool!"
+		local ST=${config_gen_sh_tool_util[SCRIPT_TOOL]}
+		local SHF="${PDIR}/bin/${TNAME}.sh" SHT="${GEN_SH_TOOL_HOME}/conf/${ST}"
+		MSG="Generating file [${SHF}]"
 		__info_debug_message "$MSG" "$FUNC" "$GEN_SH_TOOL"
-		GEN_SH_TOOL_LOGGING[LOG_FLAG]="info"
-		GEN_SH_TOOL_LOGGING[LOG_MSGE]="$MSG"
-		__logging GEN_SH_TOOL_LOGGING
-		while read SHTLINE
+		while read SHL
 		do
-			eval echo "$SHTLINE" >> "${PDIR}/bin/${TNAME}.sh"
-		done < "${GEN_SH_TOOL_HOME}/conf/${SCRIPT_TOOL}"
-		MSG="Generating basic configuration file!"
+			eval echo "${SHL}" >> ${SHF}
+		done < ${SHT}
+		local BT=${config_gen_sh_tool_util[BASIC_CONFIG]}
+		local BCF="${PDIR}/conf/${TNAME}.cfg"
+		local BCT="${GEN_SH_TOOL_HOME}/conf/${BT}"
+		MSG="Generating file [${BCF}]"
 		__info_debug_message "$MSG" "$FUNC" "$GEN_SH_TOOL"
-		while read BCLINE
+		while read BCL
 		do
-			eval echo "$BCLINE" >> "${PDIR}/conf/${TNAME}.cfg"
-		done < "${GEN_SH_TOOL_HOME}/conf/${BASIC_CONFIG}"
-		MSG="Generating util configuration file!"
+			eval echo "${BCL}" >> ${BCF}
+		done < ${BCT}
+		local UT=${config_gen_sh_tool_util[UTIL_CONFIG]}
+		local UCT="${GEN_SH_TOOL_HOME}/conf/${UT}"
+		local UCF="${PDIR}/conf/${TNAME}_util.cfg"
+		MSG="Generating file [${UCF}]"
 		__info_debug_message "$MSG" "$FUNC" "$GEN_SH_TOOL"
-		while read UCLINE
+		while read UCL
 		do
-			eval echo "$UCLINE" >> "${PDIR}/conf/${TNAME}_util.cfg"
-		done < "${GEN_SH_TOOL_HOME}/conf/${UTIL_CONFIG}"
+			eval echo "${UCL}" >> ${UCF}
+		done < ${UCT}
+		local TL="${PDIR}/log/${TNAME}.log"
+		MSG="Generating file [${TL}]"
 		__info_debug_message "$MSG" "$FUNC" "$GEN_SH_TOOL"
+		touch ${TL}
 		MSG="Set owner!"
 		__info_debug_message "$MSG" "$FUNC" "$GEN_SH_TOOL"
 		eval "chown -R ${USRID}.${GRPID} ${PDIR}/"
@@ -140,6 +146,12 @@ function __gen_sh_tool() {
 		GEN_SH_TOOL_LOGGING[LOG_MSGE]="$MSG"
 		__logging GEN_SH_TOOL_LOGGING
 		__info_debug_message_end "Done" "$FUNC" "$GEN_SH_TOOL"
+		TREE=$(which tree)
+		__check_tool "${TREE}"
+		STATUS=$?
+		if [ $STATUS -eq $SUCCESS ]; then
+			eval "${TREE} -L 3 ${PDIR}/"
+		fi
 		exit 0
 	fi
 	__usage GEN_SH_TOOL_USAGE
