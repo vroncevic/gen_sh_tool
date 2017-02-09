@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# @brief   Generating Bash Tool Script
+# @brief   Generating Bash Tool Script Project
 # @version ver.1.0
 # @date    Wed May 11 13:00:19 CEST 2016
 # @company Frobas IT Department, www.frobas.com 2016
@@ -62,12 +62,12 @@ TOOL_NOTIFY="false"
 # @usage
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #
-# TNAME="FileCheck"
-# __gen_sh_tool "$TNAME"
+# TN="FileCheck"
+# __gen_sh_tool "$TN"
 #
 function __gen_sh_tool() {
-	local TNAME=$1
-	if [ -n "${TNAME}" ]; then
+	local TN=$1
+	if [ -n "${TN}" ]; then
 		local FUNC=${FUNCNAME[0]} MSG="None" STATUS_CONF STATUS_CONF_UTIL STATUS
 		MSG="Loading basic and util configuration!"
 		__info_debug_message "$MSG" "$FUNC" "$GEN_SH_TOOL"
@@ -91,30 +91,37 @@ function __gen_sh_tool() {
 		TOOL_DEBUG=${config_gen_sh_tool[DEBUGGING]}
 		TOOL_LOG=${config_gen_sh_tool[LOGGING]}
 		TOOL_NOTIFY=${config_gen_sh_tool[EMAILING]}
-		local UMTOOL=$(echo ${TNAME} | tr 'a-z' 'A-Z') SHL PWD=`pwd` PDIR BCL
-		local DATE=$(date) VERSION=${config_gen_sh_tool_util[VERSION]} UCL
-		local COMPANY=${config_gen_sh_tool_util[COMPANY]} HASH="#" TAB="	"
-		local AUTHOR=${config_gen_sh_tool_util[AUTHOR]}
-		local EMAIL=${config_gen_sh_tool_util[EMAIL]}
+		local UTN=$(echo ${TN} | tr 'a-z' 'A-Z') SHL PWD=`pwd` PDIR BCL
+		local DATE=$(date) V=${config_gen_sh_tool_util[VERSION]} UCL
+		local COMPANY=${config_gen_sh_tool_util[COMPANY]} T="	" H="#"
+		local AN=${config_gen_sh_tool_util[AUTHOR_NAME]}
+		local AE=${config_gen_sh_tool_util[AUTHOR_EMAIL]}
+		local AEMAIL=${config_gen_sh_tool_util[AEMAIL]}
 		local USRID=${config_gen_sh_tool_util[UID]}
 		local GRPID=${config_gen_sh_tool_util[GID]}
 		MSG="Generating tool directory structure!"
 		__info_debug_message "$MSG" "$FUNC" "$GEN_SH_TOOL"
-		PDIR="${PWD}/${TNAME}"
+		PDIR="${PWD}/${TN}"
 		mkdir "${PDIR}/"
 		mkdir "${PDIR}/bin/"
 		mkdir "${PDIR}/conf/"
 		mkdir "${PDIR}/log/"
 		local ST=${config_gen_sh_tool_util[SCRIPT_TOOL]}
-		local SHF="${PDIR}/bin/${TNAME}.sh" SHT="${GEN_SH_TOOL_HOME}/conf/${ST}"
+		local SHF="${PDIR}/bin/${TN}.sh" SHT="${GEN_SH_TOOL_HOME}/conf/${ST}"
 		MSG="Generating file [${SHF}]"
 		__info_debug_message "$MSG" "$FUNC" "$GEN_SH_TOOL"
 		while read SHL
 		do
 			eval echo "${SHL}" >> ${SHF}
 		done < ${SHT}
+		local SHET=${config_gen_sh_tool_util[SH_EDIT]}
+		local SHETF=$(cat "${GEN_SH_TOOL_HOME}/conf/${SHET}")
+		local SHEF="${PDIR}/bin/.editorconfig"
+		MSG="Generating file [${SHEF}]"
+		__info_debug_message "$MSG" "$FUNC" "$GEN_SH_TOOL"
+		echo -e "${SHETF}" > "${SHEF}"
 		local BT=${config_gen_sh_tool_util[BASIC_CONFIG]}
-		local BCF="${PDIR}/conf/${TNAME}.cfg"
+		local BCF="${PDIR}/conf/${TN}.cfg"
 		local BCT="${GEN_SH_TOOL_HOME}/conf/${BT}"
 		MSG="Generating file [${BCF}]"
 		__info_debug_message "$MSG" "$FUNC" "$GEN_SH_TOOL"
@@ -122,26 +129,38 @@ function __gen_sh_tool() {
 		do
 			eval echo "${BCL}" >> ${BCF}
 		done < ${BCT}
+		local CFGET=${config_gen_sh_tool_util[CFG_EDIT]}
+		local CFGETF=$(cat "${GEN_SH_TOOL_HOME}/conf/${CFGET}")
+		local CFGEF="${PDIR}/conf/.editorconfig"
+		MSG="Generating file [${CFGEF}]"
+		__info_debug_message "$MSG" "$FUNC" "$GEN_SH_TOOL"
+		echo -e "${CFGETF}" > "${CFGEF}"
 		local UT=${config_gen_sh_tool_util[UTIL_CONFIG]}
 		local UCT="${GEN_SH_TOOL_HOME}/conf/${UT}"
-		local UCF="${PDIR}/conf/${TNAME}_util.cfg"
+		local UCF="${PDIR}/conf/${TN}_util.cfg"
 		MSG="Generating file [${UCF}]"
 		__info_debug_message "$MSG" "$FUNC" "$GEN_SH_TOOL"
 		while read UCL
 		do
 			eval echo "${UCL}" >> ${UCF}
 		done < ${UCT}
-		local TL="${PDIR}/log/${TNAME}.log"
+		local TL="${PDIR}/log/${TN}.log"
 		MSG="Generating file [${TL}]"
 		__info_debug_message "$MSG" "$FUNC" "$GEN_SH_TOOL"
 		touch ${TL}
+		local LOGET=${config_gen_sh_tool_util[LOG_EDIT]}
+		local LOGETF=$(cat "${GEN_SH_TOOL_HOME}/conf/${LOGET}")
+		local LOGEF="${PDIR}/log/.editorconfig"
+		MSG="Generating file [${LOGEF}]"
+		__info_debug_message "$MSG" "$FUNC" "$GEN_SH_TOOL"
+		echo -e "${LOGETF}" > "${LOGEF}"
 		MSG="Set owner!"
 		__info_debug_message "$MSG" "$FUNC" "$GEN_SH_TOOL"
 		eval "chown -R ${USRID}.${GRPID} ${PDIR}/"
 		MSG="Set permission!"
 		__info_debug_message "$MSG" "$FUNC" "$GEN_SH_TOOL"
 		eval "chmod -R 700 ${PDIR}/"
-		MSG="Generated bash script tool ${TNAME}"
+		MSG="Generated bash script tool ${TN}"
 		GEN_SH_TOOL_LOGGING[LOG_FLAG]="info"
 		GEN_SH_TOOL_LOGGING[LOG_MSGE]="$MSG"
 		__logging GEN_SH_TOOL_LOGGING
@@ -162,8 +181,8 @@ function __gen_sh_tool() {
 # @brief   Main entry point
 # @param   Value required script name 
 # @exitval Script tool gen_sh_tool exit with integer value
-#			0   - tool finished with success operation 
-# 			127 - run tool script as root user from cli
+#			0   - tool finished with success operation
+#			127 - run tool script as root user from cli
 #			128 - missing argument(s) from cli
 #			129 - failed to load tool configuration from files
 #
