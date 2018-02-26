@@ -2,7 +2,7 @@ ${H}"!/bin/bash"
 ${H}
 ${H}" @brief   ${TN} TODO"
 ${H}" @version ${V}"
-${H}" @date    ${DATE}"
+${H}" @date	${DATE}"
 ${H}" @company ${COMPANY}"
 ${H}" @author  ${AN} <${AE}>"
 ${H}
