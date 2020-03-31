@@ -1,6 +1,6 @@
 # Generate shell tool script.
 
-gen_sh_tool is shell tool for generating rule access to user device.
+gen_sh_tool is shell tool for generating shell tool.
 
 Developed in bash code: 100%.
 
@@ -38,8 +38,8 @@ ln -s /root/scripts/gen_sh_tool/ver.1.0/bin/gen_sh_tool.sh /root/bin/gen_sh_tool
 # Setting PATH
 export PATH=${PATH}:/root/bin/
 
-# Generating user device rule
-gen_sh_tool install avr_dragon
+# Generating shell tool
+gen_sh_tool avr_dragon
 ```
 
 ### DEPENDENCIES
