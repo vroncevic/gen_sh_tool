@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # @brief   Generating Bash Tool Script Project
-# @version ver.1.0
+# @version ver.1.0.0
 # @date    Wed May 11 13:00:19 CEST 2016
 # @company Frobas IT Department, www.frobas.com 2016
 # @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
