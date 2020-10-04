@@ -1,15 +1,18 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html4" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>GEN_SH_TOOL &mdash; gen_sh_tool https://github.com/vroncevic/gen_sh_tool/releases documentation</title>
+  <title>gen_sh_tool &mdash; gen_sh_tool https://github.com/vroncevic/gen_sh_tool/releases documentation</title>
   
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
 
   
   
@@ -17,7 +20,9 @@
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -29,10 +34,6 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
@@ -48,7 +49,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> gen_sh_tool
+            <a href="#" class="icon icon-home" alt="Documentation Home"> gen_sh_tool
           
 
           
@@ -71,6 +72,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -79,12 +81,13 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">GEN_SH_TOOL</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">gen_sh_tool</a></li>
 </ul>
 
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -123,9 +126,9 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="#">Docs</a> &raquo;</li>
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
         
-      <li>GEN_SH_TOOL</li>
+      <li>gen_sh_tool</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -145,18 +148,19 @@
            <div itemprop="articleBody">
             
   <div class="section" id="gen-sh-tool">
-<h1>GEN_SH_TOOL<a class="headerlink" href="#gen-sh-tool" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-</div>
+<h1>gen_sh_tool<a class="headerlink" href="#gen-sh-tool" title="Permalink to this headline">¶</a></h1>
 <p><strong>gen_sh_tool</strong> is shell tool for generating shell tool.</p>
 <p>Developed in <a class="reference external" href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">bash</a> code: <strong>100%</strong>.</p>
+<p><a class="reference external" href="https://github.com/vroncevic/gen_sh_tool/actions?query=workflow%3A%22gen_sh_tool+shell+checker%22"><img alt="GitHub shell checker" src="https://github.com/vroncevic/gen_sh_tool/workflows/gen_sh_tool%20shell%20checker/badge.svg" /></a></p>
 <p>The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
 other information that should be provided before the tool is installed.</p>
 <p><a class="reference external" href="https://github.com/vroncevic/gen_sh_tool/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/vroncevic/gen_sh_tool.svg" /></a> <a class="reference external" href="https://gen_sh_tool.readthedocs.io/projects/gen_sh_tool/en/latest/?badge=latest"><img alt="Documentation Status" src="https://readthedocs.org/projects/gen_sh_tool/badge/?version=latest" /></a> <a class="reference external" href="https://github.com/vroncevic/gen_sh_tool/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/vroncevic/gen_sh_tool.svg" /></a></p>
+<div class="toctree-wrapper compound">
+</div>
 </div>
 <div class="section" id="installation">
-<h1>INSTALLATION<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <p>Navigate to release <a class="reference external" href="https://github.com/vroncevic/gen_sh_tool/releases">page</a> download and extract release archive.</p>
 <p>To install <strong>gen_sh_tool</strong> type the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar xvzf gen_sh_tool-x.y.z.tar.gz
@@ -166,16 +170,18 @@ cp -R ~/sh_tool/conf/  /root/scripts/gen_sh_tool/ver.1.0/
 cp -R ~/sh_tool/log/   /root/scripts/gen_sh_tool/ver.1.0/
 </pre></div>
 </div>
+<p>Or You can use Docker to create image/container.</p>
+<p><a class="reference external" href="https://github.com/vroncevic/gen_sh_tool/actions?query=workflow%3A%22gen_sh_tool+docker+checker%22"><img alt="GitHub docker checker" src="https://github.com/vroncevic/gen_sh_tool/workflows/gen_sh_tool%20docker%20checker/badge.svg" /></a></p>
 </div>
 <div class="section" id="dependencies">
-<h1>DEPENDENCIES<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h1>
+<h1>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h1>
 <dl class="docutils">
 <dt><strong>gen_sh_tool</strong> requires next modules and libraries:</dt>
 <dd>sh_util <a class="reference external" href="https://github.com/vroncevic/sh_util">https://github.com/vroncevic/sh_util</a></dd>
 </dl>
 </div>
 <div class="section" id="shell-tool-structure">
-<h1>SHELL TOOL STRUCTURE<a class="headerlink" href="#shell-tool-structure" title="Permalink to this headline">¶</a></h1>
+<h1>Shell tool structure<a class="headerlink" href="#shell-tool-structure" title="Permalink to this headline">¶</a></h1>
 <p><strong>gen_sh_tool</strong> is based on MOP.</p>
 <p>Code structure:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
@@ -197,10 +203,10 @@ cp -R ~/sh_tool/log/   /root/scripts/gen_sh_tool/ver.1.0/
 </div>
 </div>
 <div class="section" id="copyright-and-licence">
-<h1>COPYRIGHT AND LICENCE<a class="headerlink" href="#copyright-and-licence" title="Permalink to this headline">¶</a></h1>
+<h1>Copyright and licence<a class="headerlink" href="#copyright-and-licence" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0"><img alt="License: GPL v3" src="https://img.shields.io/badge/License-GPLv3-blue.svg" /></a> <a class="reference external" href="https://opensource.org/licenses/Apache-2.0"><img alt="License: Apache 2.0" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a></p>
 <p>Copyright (C) 2016 by <a class="reference external" href="https://vroncevic.github.io/gen_sh_tool">vroncevic.github.io/gen_sh_tool</a></p>
-<p>This tool is free software; you can redistribute it and/or modify it
+<p><strong>gen_sh_tool</strong> is free software; you can redistribute it and/or modify it
 under the same terms as Bash itself, either Bash version 4.2.47 or,
 at your option, any later version of Bash 4 you may have available.</p>
 </div>
@@ -216,11 +222,19 @@ at your option, any later version of Bash 4 you may have available.</p>
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -231,7 +245,6 @@ at your option, any later version of Bash 4 you may have available.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

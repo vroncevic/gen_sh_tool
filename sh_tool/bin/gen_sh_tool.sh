@@ -27,11 +27,11 @@ GEN_SH_TOOL_CFG=${GEN_SH_TOOL_HOME}/conf/${GEN_SH_TOOL}.cfg
 GEN_SH_TOOL_UTIL_CFG=${GEN_SH_TOOL_HOME}/conf/${GEN_SH_TOOL}_util.cfg
 GEN_SH_TOOL_LOG=${GEN_SH_TOOL_HOME}/log
 
-declare -A GEN_SH_TOOL_USAGE=(
-    [USAGE_TOOL]="${GEN_SH_TOOL}"
-    [USAGE_ARG1]="[TOOL NAME] Name of bash tool script (file/project name)"
-    [USAGE_EX_PRE]="# Generating bash tool script FileCheck"
-    [USAGE_EX]="${GEN_SH_TOOL} FileCheck"
+declare -A GEN_SH_TOOL_Usage=(
+    [Usage_TOOL]="${GEN_SH_TOOL}"
+    [Usage_ARG1]="[TOOL NAME] Name of bash tool script (file/project name)"
+    [Usage_EX_PRE]="# Generating bash tool script FileCheck"
+    [Usage_EX]="${GEN_SH_TOOL} FileCheck"
 )
 
 declare -A GEN_SH_TOOL_LOGGING=(
@@ -174,7 +174,7 @@ function __gen_sh_tool {
         fi
         exit 0
     fi
-    usage GEN_SH_TOOL_USAGE
+    usage GEN_SH_TOOL_Usage
     exit 128
 }
 
