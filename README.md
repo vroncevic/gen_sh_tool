@@ -1,3 +1,5 @@
+<img align="right" src="https://raw.githubusercontent.com/vroncevic/gen_sh_tool/dev/docs/gen_sh_tool_logo.png" width="25%">
+
 # Generate shell tool script
 
 **gen_sh_tool** is shell tool for generating shell tool.
@@ -32,11 +34,11 @@ Navigate to release **[page](https://github.com/vroncevic/gen_sh_tool/releases)*
 To install **gen_sh_tool** type the following:
 
 ```
-tar xvzf gen_sh_tool-x.y.z.tar.gz
-cd gen_sh_tool-x.y.z
-cp -R ~/sh_tool/bin/   /root/scripts/gen_sh_tool/ver.1.0/
-cp -R ~/sh_tool/conf/  /root/scripts/gen_sh_tool/ver.1.0/
-cp -R ~/sh_tool/log/   /root/scripts/gen_sh_tool/ver.1.0/
+tar xvzf gen_sh_tool-x.y.tar.gz
+cd gen_sh_tool-x.y
+cp -R ~/sh_tool/bin/   /root/scripts/gen_sh_tool/ver.x.y/
+cp -R ~/sh_tool/conf/  /root/scripts/gen_sh_tool/ver.x.y/
+cp -R ~/sh_tool/log/   /root/scripts/gen_sh_tool/ver.x.y/
 ```
 
 ![alt tag](https://raw.githubusercontent.com/vroncevic/gen_sh_tool/dev/docs/setup_tree.png)
@@ -49,7 +51,7 @@ Or You can use docker to create image/container.
 
 ```
 # Create symlink for shell tool
-ln -s /root/scripts/gen_sh_tool/ver.1.0/bin/gen_sh_tool.sh /root/bin/gen_sh_tool
+ln -s /root/scripts/gen_sh_tool/ver.x.y/bin/gen_sh_tool.sh /root/bin/gen_sh_tool
 
 # Setting PATH
 export PATH=${PATH}:/root/bin/
@@ -69,7 +71,7 @@ gen_sh_tool avr_dragon
 
 Code structure:
 ```
-.
+sh_tool/
 ├── bin/
 │   └── gen_sh_tool.sh
 ├── conf/
@@ -98,7 +100,7 @@ More documentation and info at:
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2016 by [vroncevic.github.io/gen_sh_tool](https://vroncevic.github.io/gen_sh_tool)
+Copyright (C) 2017 by [vroncevic.github.io/gen_sh_tool](https://vroncevic.github.io/gen_sh_tool)
 
 **gen_sh_tool** is free software; you can redistribute it and/or modify
 it under the same terms as Bash itself, either Bash version 4.2.47 or,
