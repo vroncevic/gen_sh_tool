@@ -1,10 +1,10 @@
 #!/bin/bash
 #
-# @brief   Generating Bash Tool Script Project
-# @version ver.1.0.0
-# @date    Wed May 11 13:00:19 CEST 2016
-# @company Frobas IT Department, www.frobas.com 2016
-# @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
+# @brief   Shell Tool Generator
+# @version ver.2.0
+# @date    Wed 01 Dec 2021 09:05:44 AM CET
+# @company None, free software to use 2021
+# @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 UTIL_ROOT=/root/scripts
 UTIL_VERSION=ver.1.0
@@ -21,17 +21,24 @@ UTIL_LOG=${UTIL}/log
 .    ${UTIL}/bin/progress_bar.sh
 
 GEN_SH_TOOL=gen_sh_tool
-GEN_SH_TOOL_VERSION=ver.1.0
+GEN_SH_TOOL_VERSION=ver.2.0
 GEN_SH_TOOL_HOME=${UTIL_ROOT}/${GEN_SH_TOOL}/${GEN_SH_TOOL_VERSION}
 GEN_SH_TOOL_CFG=${GEN_SH_TOOL_HOME}/conf/${GEN_SH_TOOL}.cfg
 GEN_SH_TOOL_UTIL_CFG=${GEN_SH_TOOL_HOME}/conf/${GEN_SH_TOOL}_util.cfg
+GEN_SH_TOOL_LOGO=${GEN_SH_TOOL_HOME}/conf/${GEN_SH_TOOL}.logo
 GEN_SH_TOOL_LOG=${GEN_SH_TOOL_HOME}/log
 
-declare -A GEN_SH_TOOL_Usage=(
-    [Usage_TOOL]="${GEN_SH_TOOL}"
-    [Usage_ARG1]="[TOOL NAME] Name of bash tool script (file/project name)"
-    [Usage_EX_PRE]="# Generating bash tool script FileCheck"
-    [Usage_EX]="${GEN_SH_TOOL} FileCheck"
+tabs 4
+CONSOLE_WIDTH=$(stty size | awk '{print $2}')
+
+.    ${GEN_SH_TOOL_HOME}/bin/center.sh
+.    ${GEN_SH_TOOL_HOME}/bin/display_logo.sh
+
+declare -A GEN_SH_TOOL_USAGE=(
+    [USAGE_TOOL]="${GEN_SH_TOOL}"
+    [USAGE_ARG1]="[TOOL NAME] Name of bash tool script (file/project name)"
+    [USAGE_EX_PRE]="# Generating bash tool script FileCheck"
+    [USAGE_EX]="${GEN_SH_TOOL} FileCheck"
 )
 
 declare -A GEN_SH_TOOL_LOGGING=(
@@ -67,6 +74,7 @@ TOOL_NOTIFY="false"
 #
 function __gen_sh_tool {
     local TN=$1
+    display_logo
     if [ -n "${TN}" ]; then
         local FUNC=${FUNCNAME[0]} MSG="None"
         local STATUS_CONF STATUS_CONF_UTIL STATUS
@@ -174,7 +182,7 @@ function __gen_sh_tool {
         fi
         exit 0
     fi
-    usage GEN_SH_TOOL_Usage
+    usage GEN_SH_TOOL_USAGE
     exit 128
 }
 
@@ -195,4 +203,3 @@ if [ $STATUS -eq $SUCCESS ]; then
 fi
 
 exit 127
-

@@ -29,9 +29,11 @@ other information that should be provided before the modules are installed.
 
 ### Installation
 
+![Debian Linux OS](https://raw.githubusercontent.com/vroncevic/gen_sh_tool/dev/docs/debtux.png)
+
 Navigate to release **[page](https://github.com/vroncevic/gen_sh_tool/releases)** download and extract release archive.
 
-To install **gen_sh_tool** type the following:
+To install **gen_sh_tool** type the following
 
 ```
 tar xvzf gen_sh_tool-x.y.tar.gz
@@ -41,7 +43,40 @@ cp -R ~/sh_tool/conf/  /root/scripts/gen_sh_tool/ver.x.y/
 cp -R ~/sh_tool/log/   /root/scripts/gen_sh_tool/ver.x.y/
 ```
 
-![alt tag](https://raw.githubusercontent.com/vroncevic/gen_sh_tool/dev/docs/setup_tree.png)
+Self generated setup script and execution
+```
+./gen_sh_tool_setup.sh
+
+[setup] installing App/Tool/Script gen_sh_tool
+	Wed 01 Dec 2021 09:11:57 AM CET
+[setup] copy App/Tool/Script structure
+[setup] remove github editor configuration files
+[setup] set App/Tool/Script permission
+[setup] create symbolic link of App/Tool/Script
+[setup] done
+
+/root/scripts/gen_sh_tool/ver.2.0/
+├── bin/
+│   ├── center.sh
+│   ├── display_logo.sh
+│   └── gen_sh_tool.sh
+├── conf/
+│   ├── gen_sh_tool.cfg
+│   ├── gen_sh_tool.logo
+│   ├── gen_sh_tool_util.cfg
+│   └── template/
+│       ├── basic_config.template
+│       ├── cfg_editorconfig.template
+│       ├── log_editorconfig.template
+│       ├── sh_editorconfig.template
+│       ├── tool.template
+│       └── util_config.template
+└── log/
+    └── gen_sh_tool.log
+
+4 directories, 13 files
+lrwxrwxrwx 1 root root 52 Dec  1 09:11 /root/bin/gen_sh_tool -> /root/scripts/gen_sh_tool/ver.2.0/bin/gen_sh_tool.sh
+```
 
 Or You can use docker to create image/container.
 
@@ -57,25 +92,91 @@ ln -s /root/scripts/gen_sh_tool/ver.x.y/bin/gen_sh_tool.sh /root/bin/gen_sh_tool
 export PATH=${PATH}:/root/bin/
 
 # Generating shell tool
-gen_sh_tool avr_dragon
+gen_sh_tool FileCheck
+
+gen_sh_tool ver.2.0
+Wed 01 Dec 2021 09:15:17 AM CET
+
+[check_root] Check permission for current session? [ok]
+[check_root] Done
+
+	                                                 
+	                        _       _              _ 
+	  __ _  ___ _ __    ___| |__   | |_ ___   ___ | |
+	 / _` |/ _ \ '_ \  / __| '_ \  | __/ _ \ / _ \| |
+	| (_| |  __/ | | | \__ \ | | | | || (_) | (_) | |
+	 \__, |\___|_| |_| |___/_| |_|  \__\___/ \___/|_|
+	 |___/                                           
+	                                                 
+		Info   github.io/gen_sh_tool ver.2.0
+		Issue  github.io/issue
+		Author vroncevic.github.io
+
+[gen_sh_tool] Loading basic and util configuration!
+100% [================================================]
+
+[load_conf] Loading App/Tool/Script configuration!
+[check_cfg] Checking configuration file [/root/scripts/gen_sh_tool/ver.2.0/conf/gen_sh_tool.cfg] [ok]
+[check_cfg] Done
+
+[load_conf] Done
+
+[load_util_conf] Load module configuration!
+[check_cfg] Checking configuration file [/root/scripts/gen_sh_tool/ver.2.0/conf/gen_sh_tool_util.cfg] [ok]
+[check_cfg] Done
+
+[load_util_conf] Done
+
+[gen_sh_tool] Generating tool directory structure!
+[gen_sh_tool] Generating file [/root/scripts/FileCheck/bin/FileCheck.sh]
+[gen_sh_tool] Generating file [/root/scripts/FileCheck/bin/.editorconfig]
+[gen_sh_tool] Generating file [/root/scripts/FileCheck/conf/FileCheck.cfg]
+[gen_sh_tool] Generating file [/root/scripts/FileCheck/conf/.editorconfig]
+[gen_sh_tool] Generating file [/root/scripts/FileCheck/conf/FileCheck_util.cfg]
+[gen_sh_tool] Generating file [/root/scripts/FileCheck/log/FileCheck.log]
+[gen_sh_tool] Generating file [/root/scripts/FileCheck/log/.editorconfig]
+[gen_sh_tool] Set owner!
+[gen_sh_tool] Set permission!
+[logging] Checking directory [/root/scripts/gen_sh_tool/ver.2.0/log/]? [ok]
+[logging] Write info log!
+[logging] Done
+
+[gen_sh_tool] Done
+
+[check_tool] Checking tool [/usr/bin/tree]? [ok]
+[check_tool] Done
+
+/root/scripts/FileCheck/
+├── bin/
+│   └── FileCheck.sh
+├── conf/
+│   ├── FileCheck.cfg
+│   └── FileCheck_util.cfg
+└── log/
+    └── FileCheck.log
+
+3 directories, 4 files
 ```
 
 ### Dependencies
 
-**gen_sh_tool** requires these other modules and libraries:
+**gen_sh_tool** requires these other modules and libraries
 * sh_util [https://github.com/vroncevic/sh_util](https://github.com/vroncevic/sh_util)
 
 ### Shell tool structure
 
 **gen_sh_tool** is based on MOP.
 
-Code structure:
+Shell tool structure
 ```
 sh_tool/
 ├── bin/
+│   ├── center.sh
+│   ├── display_logo.sh
 │   └── gen_sh_tool.sh
 ├── conf/
 │   ├── gen_sh_tool.cfg
+│   ├── gen_sh_tool.logo
 │   ├── gen_sh_tool_util.cfg
 │   └── template/
 │       ├── basic_config.template
@@ -92,7 +193,7 @@ sh_tool/
 
 [![Documentation Status](https://readthedocs.org/projects/gen_sh_tool/badge/?version=latest)](https://gen_sh_tool.readthedocs.io/projects/gen_sh_tool/en/latest/?badge=latest)
 
-More documentation and info at:
+More documentation and info at
 * [https://gen_sh_tool.readthedocs.io/en/latest/](https://gen_sh_tool.readthedocs.io/en/latest/)
 * [https://www.gnu.org/software/bash/manual/](https://www.gnu.org/software/bash/manual/)
 

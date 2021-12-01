@@ -28,11 +28,11 @@ ${H}
 "${UTN}_UTIL_CFG=\\\${${UTN}_HOME}/conf/\\\${${UTN}_TOOL}_util.cfg"
 "${UTN}_LOG=\\\${${UTN}_HOME}/log"
 
-"declare -A ${UTN}_Usage=("
-${T}"[Usage_TOOL]=\\\"__${TN}\\\""
-${T}"[Usage_ARG1]=\\\"[ARG TODO] Bash module argument\\\""
-${T}"[Usage_EX_PRE]=\\\"# Example TODO\\\""
-${T}"[Usage_EX]=\\\"__${TN} ARG TODO\\\""
+"declare -A ${UTN}_USAGE=("
+${T}"[USAGE_TOOL]=\\\"__${TN}\\\""
+${T}"[USAGE_ARG1]=\\\"[ARG TODO] Bash module argument\\\""
+${T}"[USAGE_EX_PRE]=\\\"# Example TODO\\\""
+${T}"[USAGE_EX]=\\\"__${TN} ARG TODO\\\""
 ")"
 
 "declare -A ${UTN}_LOGGING=("
@@ -98,7 +98,7 @@ ${T}${T}${H}" Code goes here"
 ${T}${T}${H}
 ${T}${T}"exit 0"
 ${T}"fi"
-${T}"__usage ${UTN}_Usage"
+${T}"__usage ${UTN}_USAGE"
 ${T}"exit 128"
 "}"
 

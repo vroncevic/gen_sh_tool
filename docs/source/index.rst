@@ -33,11 +33,16 @@ other information that should be provided before the tool is installed.
 Installation
 -------------
 
+|Debian Linux OS|
+
+.. |Debian Linux OS| image:: https://raw.githubusercontent.com/vroncevic/gen_sh_tool/dev/docs/debtux.png
+   :target: https://www.debian.org
+
 Navigate to release `page`_ download and extract release archive.
 
 .. _page: https://github.com/vroncevic/gen_sh_tool/releases
 
-To install **gen_sh_tool** type the following:
+To install **gen_sh_tool** type the following
 
 .. code-block:: bash
 
@@ -57,7 +62,7 @@ Or You can use Docker to create image/container.
 Dependencies
 -------------
 
-**gen_sh_tool** requires next modules and libraries:
+**gen_sh_tool** requires next modules and libraries
 
 * sh_util `https://github.com/vroncevic/sh_util <https://github.com/vroncevic/sh_util>`_
 
@@ -66,15 +71,18 @@ Shell tool structure
 
 **gen_sh_tool** is based on MOP.
 
-Code structure:
+Shell tool structure
 
 .. code-block:: bash
 
    sh_tool/
    ├── bin/
+   │   ├── center.sh
+   │   ├── display_logo.sh
    │   └── gen_sh_tool.sh
    ├── conf/
    │   ├── gen_sh_tool.cfg
+   │   ├── gen_sh_tool.logo
    │   ├── gen_sh_tool_util.cfg
    │   └── template/
    │       ├── basic_config.template
