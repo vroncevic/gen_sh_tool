@@ -1,6 +1,6 @@
-<img align="right" src="https://raw.githubusercontent.com/vroncevic/gen_sh_tool/dev/docs/gen_sh_tool_logo.png" width="25%">
-
 # Generate shell tool script
+
+<img align="right" src="https://raw.githubusercontent.com/vroncevic/gen_sh_tool/dev/docs/gen_sh_tool_logo.png" width="25%">
 
 **gen_sh_tool** is shell tool for generating shell tool.
 
@@ -35,7 +35,7 @@ Navigate to release **[page](https://github.com/vroncevic/gen_sh_tool/releases)*
 
 To install **gen_sh_tool** type the following
 
-```
+```bash
 tar xvzf gen_sh_tool-x.y.tar.gz
 cd gen_sh_tool-x.y
 cp -R ~/sh_tool/bin/   /root/scripts/gen_sh_tool/ver.x.y/
@@ -44,7 +44,8 @@ cp -R ~/sh_tool/log/   /root/scripts/gen_sh_tool/ver.x.y/
 ```
 
 Self generated setup script and execution
-```
+
+```bash
 ./gen_sh_tool_setup.sh
 
 [setup] installing App/Tool/Script gen_sh_tool
@@ -82,7 +83,7 @@ Or You can use docker to create image/container.
 
 ### Usage
 
-```
+```bash
 # Create symlink for shell tool
 ln -s /root/scripts/gen_sh_tool/ver.x.y/bin/gen_sh_tool.sh /root/bin/gen_sh_tool
 
@@ -169,7 +170,8 @@ Wed 01 Dec 2021 09:15:17 AM CET
 **gen_sh_tool** is based on MOP.
 
 Shell tool structure
-```
+
+```bash
 sh_tool/
 ├── bin/
 │   ├── center.sh
